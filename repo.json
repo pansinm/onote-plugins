@@ -2,8 +2,8 @@
   "plugins": {
     "@sinm/onote-plugin-drawio": {
       "name": "Drawio Plgin",
-      "homepage": "",
-      "downloadUrl": ""
+      "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-drawio",
+      "downloadUrl": "https://registry.npmjs.org/@sinm/onote-plugin-drawio/-/onote-plugin-drawio-0.1.0.tgz"
     }
   }
 }
