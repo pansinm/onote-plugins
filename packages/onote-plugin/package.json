@@ -1,6 +1,6 @@
 {
   "name": "@sinm/onote-plugin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "onote plugin ",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
