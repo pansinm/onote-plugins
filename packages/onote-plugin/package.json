@@ -1,6 +1,6 @@
 {
   "name": "@sinm/onote-plugin",
-  "version": "0.0.2",
+  "version": "0.0.0",
   "description": "onote plugin ",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -18,5 +18,7 @@
   "files": [
     "lib"
   ],
-  "gitHead": "e4be34ddabccc964da2a8e183befa59d965c168b"
+  "publishConfig": {
+    "access": "public"
+  }
 }
