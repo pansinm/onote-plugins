@@ -1,0 +1,11 @@
+{
+  "name": "@sinm/onote-plugin-drawio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "pansinm <pansinm@foxmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "typescript": "^4.9.3"
+  }
+}

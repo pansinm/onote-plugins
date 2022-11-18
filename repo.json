@@ -1,0 +1,9 @@
+{
+  "plugins": {
+    "@sinm/onote-plugin-drawio": {
+      "name": "Drawio Plgin",
+      "homepage": "",
+      "downloadUrl": ""
+    }
+  }
+}
