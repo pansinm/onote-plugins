@@ -1,5 +1,3 @@
-import { IPCEvent } from "../ipc";
-
 export interface IEditorExtension {
   /**
    * 编辑器加载时
@@ -42,6 +40,7 @@ export interface IFilePanel {
    */
   previewer?: string;
 }
+
 export type Dispose = () => void;
 
 export interface MainFrame {
@@ -55,7 +54,6 @@ export interface MainFrame {
   readText(uri: string): Promise<string>;
 
   writeFile(uri: string, content: Uint8Array): Promise<void>;
-
   writeText(uri: string, content: string): Promise<void>;
 
   /**
@@ -69,7 +67,7 @@ export interface MainFrame {
   /**
    * 发送事件给特定port
    */
-  sendPortEvent(port: string, eventName: string, payload: any): void;
+  sendPortEvent(port: MessagePort, eventName: string, payload: any): void;
 
   /**
    * 处理其他页面port发送的请求，返回值作为响应
@@ -82,6 +80,11 @@ export interface MainFrame {
    * 获取当前tab的url
    */
   getCurrentTabUrl(): string | undefined;
+
+  /**
+   * 插件目录
+   */
+  getPluginRootUri(pluginName: string): string;
 }
 
 const mainFrame = (window as any).__frame as MainFrame;
