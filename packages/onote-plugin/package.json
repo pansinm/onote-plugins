@@ -6,6 +6,9 @@
   "types": "lib/index.d.ts",
   "author": "pansinm <pansinm@foxmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "@types/events": "^3.0.0",
     "@types/lodash": "^4.14.189",

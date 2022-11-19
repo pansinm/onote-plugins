@@ -1,3 +1,5 @@
+import { Dispose } from "../util";
+
 export interface IEditorExtension {
   /**
    * 编辑器加载时
@@ -41,7 +43,6 @@ export interface IFilePanel {
   previewer?: string;
 }
 
-export type Dispose = () => void;
 
 export interface MainFrame {
   // 编辑器扩展

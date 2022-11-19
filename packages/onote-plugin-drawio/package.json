@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "main": "dist/index.js",
   "author": "pansinm <pansinm@foxmail.com>",
+  "title": "Draw.io Plugin",
+  "description": "Draw.io plugin for ONote",
+  "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-drawio",
   "license": "MIT",
   "scripts": {
     "build": "tsc && webpack"

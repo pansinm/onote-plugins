@@ -16,7 +16,7 @@ export class Port {
         }
       }
     });
-    window.parent.postMessage({ type: "request-port" });
+    window.parent.postMessage({ type: "request-port" }, "*");
   }
 
   async ready() {
@@ -76,9 +76,8 @@ export class Port {
     port.addEventListener("close", (e) => {
       port?.close();
       this.port = undefined;
-      console.log("previewer port closed", e);
       setTimeout(
-        () => window.parent.postMessage({ type: "request-port" }),
+        () => window.parent.postMessage({ type: "request-port" }, '*'),
         2000
       );
     });

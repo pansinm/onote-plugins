@@ -15,3 +15,11 @@ mainFrame.handlePortRequest("drawio.readFile", async ({ uri }) => {
     return mainFrame.readText(uri);
   }
 });
+
+mainFrame.handlePortRequest("drawio.saveFile", async ({ uri, content }) => {
+  if (uri) {
+    const blob: Blob = await fetch(content).then(res => res.blob()); 
+    const buf = await blob.arrayBuffer();
+    return mainFrame.writeFile(uri, new Int8Array(buf) as any);
+  }
+});

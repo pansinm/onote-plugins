@@ -1,5 +1,7 @@
 import type { EventEmitter } from 'events';
 
+export type Dispose = () => void;
+
 export function waitEvent<T extends EventEmitter>(
   emitter: T,
   eventName: Parameters<T['on']>['0'],
