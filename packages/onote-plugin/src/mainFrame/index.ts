@@ -45,12 +45,14 @@ export interface IFilePanel {
 
 
 export interface MainFrame {
+  onTabOpened(callback: (uri: string) => void): Dispose;
+
   // 编辑器扩展
   registerEditorExtension(extension: IEditorExtension): void;
 
-  // 文件面板
+  // 注册文件面板
   registerFilePanel(panel: IFilePanel): void;
-
+ 
   readFile(uri: string): Promise<Uint8Array>;
   readText(uri: string): Promise<string>;
 

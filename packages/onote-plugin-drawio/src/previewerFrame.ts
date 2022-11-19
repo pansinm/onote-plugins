@@ -1,5 +1,4 @@
 import { port } from "@sinm/onote-plugin/lib/previewerFrame";
-import { stringify } from "querystring";
 
 const iframe = document.createElement("iframe");
 
@@ -32,7 +31,11 @@ async function load(uri: string) {
   );
 }
 
-port.handleEvent("OpenedModelChanged", async ({ uri }) => {
+port.ready().then(() => {
+  port.sendEvent('drawio.ready');
+});
+
+port.handleEvent("drawio.tabopened", async ({ uri }) => {
   load(uri);
 });
 
