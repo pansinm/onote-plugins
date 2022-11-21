@@ -2,8 +2,8 @@
   "name": "@sinm/onote-plugin",
   "version": "0.2.0",
   "description": "onote plugin ",
-  "main": "node/index.js",
-  "types": "node/index.d.ts",
+  "main": "backend/index.js",
+  "types": "backend/index.d.ts",
   "author": "pansinm <pansinm@foxmail.com>",
   "license": "MIT",
   "scripts": {
