@@ -1,6 +1,6 @@
 {
   "name": "@sinm/onote-plugin",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "onote plugin ",
   "main": "backend/index.js",
   "types": "backend/index.d.ts",
