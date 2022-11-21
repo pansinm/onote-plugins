@@ -23,7 +23,8 @@
     "drawio.html"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "gitHead": "2d5b5bc9f2009b5f2ca17ef5b30ffa322eb197a2"
 }
