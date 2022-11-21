@@ -1,8 +1,9 @@
-import mainFrame from "@sinm/onote-plugin/lib/mainFrame";
+import mainFrame from "@sinm/onote-plugin/main";
+import EditorExtension from "./EditorExtension";
 
 let drawioPort: MessagePort;
 
-mainFrame.onTabOpened((uri) => {
+mainFrame.onTabActivated(({ uri }) => {
   mainFrame.sendPortEvent(drawioPort, "drawio.tabopened", { uri });
 });
 
@@ -18,7 +19,7 @@ mainFrame.registerFilePanel({
 });
 
 mainFrame.handlePortRequest("drawio.getCurrent", async () => {
-  return mainFrame.getCurrentTabUrl();
+  return mainFrame.getActiveTab()?.uri;
 });
 
 mainFrame.handlePortRequest("drawio.readFile", async ({ uri }) => {
@@ -34,3 +35,5 @@ mainFrame.handlePortRequest("drawio.saveFile", async ({ uri, content }) => {
     return mainFrame.writeFile(uri, new Int8Array(buf) as any);
   }
 });
+
+mainFrame.registerEditorExtension(new EditorExtension())

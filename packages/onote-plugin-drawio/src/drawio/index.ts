@@ -1,4 +1,4 @@
-import { port } from "@sinm/onote-plugin/lib/previewerFrame";
+import { port } from "@sinm/onote-plugin/previewer";
 
 const iframe = document.createElement("iframe");
 

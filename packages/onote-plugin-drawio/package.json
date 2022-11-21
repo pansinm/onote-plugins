@@ -1,17 +1,18 @@
 {
   "name": "@sinm/onote-plugin-drawio",
   "version": "0.2.0",
-  "main": "dist/index.js",
+  "main": "dist/main/index.js",
   "author": "pansinm <pansinm@foxmail.com>",
   "title": "Draw.io Plugin",
   "description": "Draw.io plugin for ONote",
   "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-drawio",
   "license": "MIT",
   "scripts": {
-    "build": "tsc && webpack"
+    "build": "webpack"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
+    "monaco-editor": "^0.34.1",
     "ts-loader": "^9.4.1",
     "typescript": "^4.9.3",
     "webpack": "^5.75.0",

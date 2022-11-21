@@ -1,4 +1,4 @@
-import { Dispose } from "../util";
+import { Dispose } from "../common/util";
 
 export interface IEditorExtension {
   /**
@@ -11,6 +11,10 @@ export interface IEditorExtension {
    * 编辑器卸载时
    */
   dispose(): void;
+}
+
+export interface ITab {
+  uri: string;
 }
 
 export interface IFilePanel {
@@ -43,16 +47,30 @@ export interface IFilePanel {
   previewer?: string;
 }
 
-
 export interface MainFrame {
-  onTabOpened(callback: (uri: string) => void): Dispose;
+  /**
+   * 获取当前tab
+   */
+  getActiveTab(): ITab | undefined;
+
+  /**
+   * 打开tab
+   * @param uri 
+   */
+  openTab(uri: string): void;
+
+  /**
+   * Tab激活
+   * @param callback 
+   */
+  onTabActivated(callback: (tab: ITab) => void): Dispose;
 
   // 编辑器扩展
   registerEditorExtension(extension: IEditorExtension): void;
 
   // 注册文件面板
   registerFilePanel(panel: IFilePanel): void;
- 
+
   readFile(uri: string): Promise<Uint8Array>;
   readText(uri: string): Promise<string>;
 
@@ -74,15 +92,13 @@ export interface MainFrame {
 
   /**
    * 处理其他页面port发送的请求，返回值作为响应
-   * @param method 
-   * @param handler 
+   * @param method
+   * @param handler
    */
-  handlePortRequest(method: string, handler: (payload: any) => Promise<any>): Dispose;
-
-  /**
-   * 获取当前tab的url
-   */
-  getCurrentTabUrl(): string | undefined;
+  handlePortRequest(
+    method: string,
+    handler: (payload: any) => Promise<any>
+  ): Dispose;
 
   /**
    * 插件目录

@@ -1,4 +1,4 @@
-import { Dispose } from "./util";
+import { Dispose } from "../common/util";
 
 interface Frame {
     url: string;

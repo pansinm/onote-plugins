@@ -1,7 +1,7 @@
 import { EventEmitter } from "events";
 import uniqueId from "lodash/uniqueId";
-import { IPCMessage, IPCResponse } from "../ipc";
-import { waitEvent } from "../util";
+import { IPCMessage, IPCResponse } from "../common/ipc";
+import { waitEvent } from "../common/util";
 
 export class Port {
   private emitter = new EventEmitter();
