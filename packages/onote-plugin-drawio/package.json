@@ -1,7 +1,7 @@
 {
   "name": "@sinm/onote-plugin-drawio",
   "version": "0.2.2",
-  "main": "dist/main/index.js",
+  "main": "dist/main.js",
   "author": "pansinm <pansinm@foxmail.com>",
   "title": "Draw.io Plugin",
   "description": "Draw.io plugin for ONote",

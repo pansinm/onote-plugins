@@ -22,7 +22,7 @@
     "common",
     "main",
     "previewer",
-    "node"
+    "backend"
   ],
   "publishConfig": {
     "access": "public",
