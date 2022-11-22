@@ -16,6 +16,10 @@ export class Port {
         }
       }
     });
+    window.addEventListener('unload', () => {
+      // must close otherwise crash
+      this.port?.close();
+    })
     window.parent.postMessage({ type: "request-port" }, "*");
   }
 
