@@ -1,0 +1,35 @@
+{
+  "name": "@sinm/onote-plugin-excalidraw",
+  "version": "0.1.0",
+  "main": "dist/main.js",
+  "author": "pansinm <pansinm@foxmail.com>",
+  "title": "Draw.io Plugin",
+  "description": "Draw.io plugin for ONote",
+  "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-excalidraw",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "@excalidraw/excalidraw": "^0.13.0",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "buffer": "^6.0.3",
+    "monaco-editor": "^0.34.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.9.3",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
+  },
+  "files": [
+    "dist",
+    "excalidraw.html"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
