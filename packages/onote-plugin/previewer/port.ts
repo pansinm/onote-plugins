@@ -36,7 +36,7 @@ export class Port {
     return id;
   }
 
-  async handleEvent(eventName: string, listener: (payload: any) => void) {
+  handleEvent(eventName: string, listener: (payload: any) => void) {
     const _listener = (data: any) => listener(data.payload);
     this.emitter.on(eventName, _listener);
     return () => {
