@@ -1,4 +1,5 @@
 # Plugins For ONote
 
-Developing...
+- onote-plugin-drawio
+- onote-plugin-excalidraw
 

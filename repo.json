@@ -12,11 +12,11 @@
     "@sinm/onote-plugin-excalidraw": {
       "name": "@sinm/onote-plugin-excalidraw",
       "author": "pansinm <pansinm@foxmail.com>",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "title": "Excalidraw Plugin",
       "description": "Excalidraw Plugin for ONote",
       "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-excalidraw",
-      "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-excalidraw/-/onote-plugin-excalidraw-0.1.2.tgz"
+      "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-excalidraw/-/onote-plugin-excalidraw-0.1.3.tgz"
     }
   }
 }
