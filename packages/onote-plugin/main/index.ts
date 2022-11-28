@@ -1,4 +1,4 @@
-import { Dispose } from "../common/util";
+import { Dispose, IDisposable } from "../common/util";
 
 export interface IEditorExtension {
   /**
@@ -6,11 +6,7 @@ export interface IEditorExtension {
    * @param editor
    * @param monaco
    */
-  active(editor: any, monaco: any): void;
-  /**
-   * 编辑器卸载时
-   */
-  dispose(): void;
+  active(editor: any, monaco: any): IDisposable;
 }
 
 export interface ITab {
@@ -55,13 +51,13 @@ export interface MainFrame {
 
   /**
    * 打开tab
-   * @param uri 
+   * @param uri
    */
   openTab(uri: string): void;
 
   /**
    * Tab激活
-   * @param callback 
+   * @param callback
    */
   onTabActivated(callback: (tab: ITab) => void): Dispose;
 

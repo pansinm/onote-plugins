@@ -3,8 +3,8 @@ import mainFrame, { IEditorExtension } from "@sinm/onote-plugin/main";
 import CompletionItemProvider from "./CompletionProvider";
 
 class EditorExtension implements IEditorExtension {
-  disposers: monaco.IDisposable[] = [];
-  active(editor: monaco.editor.IStandaloneCodeEditor): void {
+  active(editor: monaco.editor.IStandaloneCodeEditor): monaco.IDisposable {
+    const disposers: monaco.IDisposable[] = [];
     const completeDisposer = monaco.languages.registerCompletionItemProvider(
       "markdown",
       new CompletionItemProvider()
@@ -27,22 +27,22 @@ class EditorExtension implements IEditorExtension {
         }
         const currentTab = mainFrame.getActiveTab();
         if (range && currentTab) {
-          console.log(range, currentTab, model)
+          console.log(range, currentTab, model);
           const assetName = `assets/${Date.now()}.drawio.svg`;
           const assetUri = currentTab.uri.replace(/\/[^\/]+$/, `/${assetName}`);
-          mainFrame.writeText(assetUri, '').then(() => {
+          mainFrame.writeText(assetUri, "").then(() => {
             mainFrame.openTab(assetUri);
           });
-          model.applyEdits([{ range, text: `![drawio](${assetName})`, forceMoveMarkers: true }]);
+          model.applyEdits([
+            { range, text: `![drawio](${assetName})`, forceMoveMarkers: true },
+          ]);
         }
       }
     );
-    this.disposers.push(completeDisposer, commandDisposer)
-  }
-
-  dispose(): void {
-    this.disposers.forEach((d) => d.dispose());
-    this.disposers = [];
+    disposers.push(completeDisposer, commandDisposer);
+    return {
+      dispose: () => disposers.forEach((disposer) => disposer.dispose()),
+    };
   }
 }
 

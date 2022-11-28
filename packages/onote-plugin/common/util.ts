@@ -1,11 +1,15 @@
-import type { EventEmitter } from 'events';
+import type { EventEmitter } from "events";
 
 export type Dispose = () => void;
 
+export interface IDisposable {
+  dispose: Dispose;
+}
+
 export function waitEvent<T extends EventEmitter>(
   emitter: T,
-  eventName: Parameters<T['on']>['0'],
-  filter?: (data: any) => boolean,
+  eventName: Parameters<T["on"]>["0"],
+  filter?: (data: any) => boolean
 ): Promise<any> {
   return new Promise((resolve, reject) => {
     const listener = (data: any) => {
