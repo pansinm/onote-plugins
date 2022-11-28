@@ -1,6 +1,6 @@
 {
   "name": "@sinm/onote-plugin-excalidraw",
-  "version": "0.1.3",
+  "version": "0.2.10",
   "main": "dist/main.js",
   "author": "pansinm <pansinm@foxmail.com>",
   "title": "Draw.io Plugin",
