@@ -22,10 +22,14 @@ function parseAndUpdateFromSvg(api: ExcalidrawImperativeAPI, svg: string) {
 
     // forEach error
     sceneData.appState.collaborators = new Map();
+    sceneData.appState.width = window.innerWidth;
+    console.log(sceneData);
     api.updateScene(sceneData);
   } catch (err) {
     api.resetScene();
   }
+  api.refresh();
+  console.log(api);
 }
 
 async function toSvg(api: ExcalidrawImperativeAPI) {
@@ -70,14 +74,18 @@ function App() {
     );
     port.ready().then(() => {
       port.sendEvent("excalidraw.ready");
-      getCurrentUri()
-        .then((uri) => {
-          currentUriRef.current = uri || "";
-          if (!uri) {
-            throw new Error("no file opened");
-          }
-          return loadSvg(excalidrawRef.current!, uri)
-        })
+      excalidrawRef.current?.updateScene({
+        elements: [],
+        appState: { width: window.innerWidth },
+      });
+      excalidrawRef.current?.refresh();
+      getCurrentUri().then((uri) => {
+        currentUriRef.current = uri || "";
+        if (!uri) {
+          throw new Error("no file opened");
+        }
+        return loadSvg(excalidrawRef.current!, uri);
+      });
     });
 
     return () => {
