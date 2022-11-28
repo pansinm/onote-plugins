@@ -3,20 +3,20 @@
     "@sinm/onote-plugin-drawio": {
       "name": "@sinm/onote-plugin-drawio",
       "author": "pansinm <pansinm@foxmail.com>",
-      "version": "0.2.5",
+      "version": "0.2.10",
       "title": "Drawio Plugin",
       "description": "Drawio Plugin for ONote",
       "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-drawio",
-      "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-drawio/-/onote-plugin-drawio-0.2.5.tgz"
+      "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-drawio/-/onote-plugin-drawio-0.2.10.tgz"
     },
     "@sinm/onote-plugin-excalidraw": {
       "name": "@sinm/onote-plugin-excalidraw",
       "author": "pansinm <pansinm@foxmail.com>",
-      "version": "0.1.3",
+      "version": "0.2.10",
       "title": "Excalidraw Plugin",
       "description": "Excalidraw Plugin for ONote",
       "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-excalidraw",
-      "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-excalidraw/-/onote-plugin-excalidraw-0.1.3.tgz"
+      "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-excalidraw/-/onote-plugin-excalidraw-0.2.10.tgz"
     }
   }
 }

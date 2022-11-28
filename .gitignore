@@ -3,3 +3,4 @@ packages/onote-plugin/**/*.js
 packages/onote-plugin/**/*.d.ts
 packages/*/lib
 dist/
+*.log
