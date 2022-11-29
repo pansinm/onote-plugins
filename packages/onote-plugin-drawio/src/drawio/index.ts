@@ -18,7 +18,7 @@ async function load(uri: string) {
   }
   let drawIoWindow = iframe?.contentWindow;
   currentUri = uri;
-  const content = await port.sendRequestAndWait("drawio.readFile", { uri });
+  const content = await port.sendRequestAndWait("drawio.readFile", { uri }).catch(() => '');
   drawIoWindow?.postMessage(
     JSON.stringify({
       action: "load",
