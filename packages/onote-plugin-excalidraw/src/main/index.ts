@@ -13,7 +13,7 @@ mainFrame.listenPortEvent("excalidraw.ready", (port) => {
 
 mainFrame.registerFilePanel({
   editable: false,
-  extensions: [".dio.svg", ".excalidraw.svg"],
+  extensions: [".excalidraw.svg"],
   previewer:
     mainFrame.getPluginRootUri("@sinm/onote-plugin-excalidraw") + "/excalidraw.html",
 });
