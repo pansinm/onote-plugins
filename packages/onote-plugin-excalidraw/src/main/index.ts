@@ -1,4 +1,5 @@
 import mainFrame from "@sinm/onote-plugin/main";
+import {Buffer} from 'buffer/'
 import EditorExtension from "./EditorExtension";
 
 let excalidrawPort: MessagePort;
@@ -13,7 +14,7 @@ mainFrame.listenPortEvent("excalidraw.ready", (port) => {
 
 mainFrame.registerFilePanel({
   editable: false,
-  extensions: [".excalidraw.svg"],
+  extensions: [".excalidraw.svg", ".excalidraw.png"],
   previewer:
     mainFrame.getPluginRootUri("@sinm/onote-plugin-excalidraw") + "/excalidraw.html",
 });
@@ -24,13 +25,15 @@ mainFrame.handlePortRequest("excalidraw.getCurrent", async () => {
 
 mainFrame.handlePortRequest("excalidraw.readFile", async ({ uri }) => {
   if (uri) {
-    return mainFrame.readText(uri);
+    const content = await mainFrame.readFile(uri);
+    return Buffer.from(content).toString('base64');
   }
+  throw new Error('uri missing');
 });
 
 mainFrame.handlePortRequest("excalidraw.saveFile", async ({ uri, content }) => {
   if (uri) {
-    return mainFrame.writeFile(uri, content);
+    return mainFrame.writeFile(uri, Buffer.from(content, 'base64'));
   }
 });
 

@@ -1,7 +1,9 @@
+import { Buffer } from "buffer/";
 import { port } from "@sinm/onote-plugin/previewer";
 
-export function readFile(uri: string) {
-  return port.sendRequestAndWait("excalidraw.readFile", { uri });
+export async function readFile(uri: string) {
+  const content = await port.sendRequestAndWait("excalidraw.readFile", { uri });
+  return Buffer.from(content, "base64");
 }
 
 export function writeFile(uri: string, content: string) {

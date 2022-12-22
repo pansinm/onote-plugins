@@ -12,7 +12,7 @@ class EditorExtension implements IEditorExtension {
 
     const commandDisposer = monaco.editor.registerCommand(
       "editor.excalidraw.insertDiagram",
-      (accessor, model: monaco.editor.ITextModel, _range: monaco.Range) => {
+      (accessor, model: monaco.editor.ITextModel, _range: monaco.Range, type: 'svg' | 'png') => {
         let range = _range;
         if (!range) {
           const selection = editor.getSelection();
@@ -27,8 +27,7 @@ class EditorExtension implements IEditorExtension {
         }
         const currentTab = mainFrame.getActiveTab();
         if (range && currentTab) {
-          console.log(range, currentTab, model);
-          const assetName = `assets/${Date.now()}.excalidraw.svg`;
+          const assetName = `assets/${Date.now()}.excalidraw.${type}`;
           const assetUri = currentTab.uri.replace(/\/[^\/]+$/, `/${assetName}`);
           mainFrame.writeText(assetUri, "").then(() => {
             mainFrame.openTab(assetUri);
