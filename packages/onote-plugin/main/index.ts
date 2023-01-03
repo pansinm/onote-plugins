@@ -1,4 +1,5 @@
 import { Dispose, IDisposable } from "../common/util";
+import type Tunnel from "../previewer/tunnel/Tunnel";
 
 export interface IEditorExtension {
   /**
@@ -73,28 +74,9 @@ export interface MainFrame {
   writeFile(uri: string, content: Uint8Array): Promise<void>;
   writeText(uri: string, content: string): Promise<void>;
 
-  /**
-   * 监听页面发过来的事件
-   */
-  listenPortEvent(
-    eventName: string,
-    listener: (port: MessagePort, payload: any) => void
-  ): Dispose;
+  onNewTunnel(callback: (tunnel: Tunnel) => void): IDisposable;
 
-  /**
-   * 发送事件给特定port
-   */
-  sendPortEvent(port: MessagePort, eventName: string, payload: any): void;
-
-  /**
-   * 处理其他页面port发送的请求，返回值作为响应
-   * @param method
-   * @param handler
-   */
-  handlePortRequest(
-    method: string,
-    handler: (payload: any) => Promise<any>
-  ): Dispose;
+  findTunnels(indicate: (tunnel: Tunnel) => boolean): Tunnel[];
 
   /**
    * 插件目录

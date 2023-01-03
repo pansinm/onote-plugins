@@ -1,14 +1,38 @@
 import mainFrame from "@sinm/onote-plugin/main";
+import Tunnel from "@sinm/onote-plugin/previewer/tunnel/Tunnel";
 import EditorExtension from "./EditorExtension";
 
-let drawioPort: MessagePort;
+let drawioTunnel: Tunnel;
 
-mainFrame.onTabActivated(({ uri }) => {
-  mainFrame.sendPortEvent(drawioPort, "drawio.tabopened", { uri });
+mainFrame.onNewTunnel((tunnel) => {
+  console.log("active", tunnel.groupId);
+  if (tunnel.groupId !== "drawio") {
+    return;
+  }
+  drawioTunnel = tunnel;
+  tunnel.handle("drawio.getCurrent", async () => {
+    return mainFrame.getActiveTab()?.uri;
+  });
+
+  tunnel.handle("drawio.readFile", async ({ uri }) => {
+    if (uri) {
+      return mainFrame.readText(uri);
+    }
+  });
+
+  tunnel.handle("drawio.saveFile", async ({ uri, content }) => {
+    if (uri) {
+      const blob: Blob = await fetch(content).then((res) => res.blob());
+      const buf = await blob.arrayBuffer();
+      return mainFrame.writeFile(uri, new Int8Array(buf) as any);
+    }
+  });
 });
 
-mainFrame.listenPortEvent("drawio.ready", (port) => {
-  drawioPort = port;
+mainFrame.onTabActivated(({ uri }) => {
+  if (drawioTunnel) {
+    drawioTunnel.send("drawio.tabopened", { uri });
+  }
 });
 
 mainFrame.registerFilePanel({
@@ -18,22 +42,4 @@ mainFrame.registerFilePanel({
     mainFrame.getPluginRootUri("@sinm/onote-plugin-drawio") + "/drawio.html",
 });
 
-mainFrame.handlePortRequest("drawio.getCurrent", async () => {
-  return mainFrame.getActiveTab()?.uri;
-});
-
-mainFrame.handlePortRequest("drawio.readFile", async ({ uri }) => {
-  if (uri) {
-    return mainFrame.readText(uri);
-  }
-});
-
-mainFrame.handlePortRequest("drawio.saveFile", async ({ uri, content }) => {
-  if (uri) {
-    const blob: Blob = await fetch(content).then((res) => res.blob());
-    const buf = await blob.arrayBuffer();
-    return mainFrame.writeFile(uri, new Int8Array(buf) as any);
-  }
-});
-
-mainFrame.registerEditorExtension(new EditorExtension())
+mainFrame.registerEditorExtension(new EditorExtension());

@@ -1,4 +1,4 @@
-import { port } from "@sinm/onote-plugin/previewer";
+import { TunnelFactory } from "@sinm/onote-plugin/previewer";
 
 const iframe = document.createElement("iframe");
 
@@ -11,6 +11,9 @@ function isSupport(uri: string) {
   return /\.(dio|drawio).svg$/.test(uri);
 }
 
+const tunnel = TunnelFactory.createTunnelToMainFrame('drawio');
+
+console.log(tunnel);
 let currentUri: string;
 async function load(uri: string) {
   if (!isSupport(uri)) {
@@ -18,7 +21,7 @@ async function load(uri: string) {
   }
   let drawIoWindow = iframe?.contentWindow;
   currentUri = uri;
-  const content = await port.sendRequestAndWait("drawio.readFile", { uri }).catch(() => '');
+  const content = await tunnel.call("drawio.readFile", { uri }).catch(() => '');
   drawIoWindow?.postMessage(
     JSON.stringify({
       action: "load",
@@ -31,11 +34,8 @@ async function load(uri: string) {
   );
 }
 
-port.ready().then(() => {
-  port.sendEvent('drawio.ready');
-});
 
-port.handleEvent("drawio.tabopened", async ({ uri }) => {
+tunnel.on("drawio.tabopened", async ({ uri }) => {
   load(uri);
 });
 
@@ -45,11 +45,11 @@ window.addEventListener("message", async (evt) => {
   if (evt.source !== drawIoWindow || !drawIoWindow) {
     return;
   }
-  await port.ready();
+  await tunnel.waitForReady();
   const msg = JSON.parse(evt.data);
   if (msg.event === "init") {
-    const currentUri = await port.sendRequestAndWait("drawio.getCurrent");
-    load(currentUri);
+    const currentUri = await tunnel.call("drawio.getCurrent");
+    load(currentUri as string);
     return;
   }
   if (msg.event === "save" || msg.event === 'autosave') {
@@ -60,7 +60,7 @@ window.addEventListener("message", async (evt) => {
     return;
   }
   if (msg.event == "export") {
-    await port.sendRequestAndWait("drawio.saveFile", {
+    await tunnel.call("drawio.saveFile", {
       uri: currentUri,
       content: msg.data,
     });

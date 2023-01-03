@@ -1,3 +1,3 @@
-import { port } from "./port";
+import TunnelFactory from "./tunnel/TunnelFactory";
 
-export { port }
+export { TunnelFactory }

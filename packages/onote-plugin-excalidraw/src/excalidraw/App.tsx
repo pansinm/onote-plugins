@@ -12,7 +12,7 @@ import {
   AppState,
   ExcalidrawImperativeAPI,
 } from "@excalidraw/excalidraw/types/types";
-import { port } from "@sinm/onote-plugin/previewer";
+import { TunnelFactory } from "@sinm/onote-plugin/previewer";
 import debounce from "lodash/debounce";
 import { getCurrentUri, readFile, writeFile } from "./ipc";
 import {
@@ -21,6 +21,7 @@ import {
   extraDataFromPng,
   extraDataFromSvg,
 } from "./util";
+import tunnel from "./tunnel";
 
 function isSupport(uri: string) {
   return /\.(excalidraw).(png|svg)$/.test(uri);
@@ -94,7 +95,7 @@ function App() {
   const excalidrawRef = useRef<ExcalidrawImperativeAPI>(null);
   const currentUriRef = useRef("");
   useEffect(() => {
-    const dispose = port.handleEvent(
+    tunnel.on(
       "excalidraw.tabopened",
       async ({ uri }) => {
         if (!isSupport(uri) || currentUriRef.current === uri) {
@@ -104,8 +105,8 @@ function App() {
         load(excalidrawRef.current!, uri);
       }
     );
-    port.ready().then(() => {
-      port.sendEvent("excalidraw.ready");
+    tunnel.waitForReady().then(() => {
+      tunnel.call("excalidraw.ready");
       excalidrawRef.current?.updateScene({
         elements: [],
         appState: { width: window.innerWidth },
@@ -119,10 +120,6 @@ function App() {
         return load(excalidrawRef.current!, uri);
       });
     });
-
-    return () => {
-      dispose();
-    };
   }, []);
 
   return (

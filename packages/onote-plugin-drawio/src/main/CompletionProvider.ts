@@ -33,7 +33,7 @@ class CompletionItemProvider
           kind: monaco.languages.CompletionItemKind.Function,
           insertText: "",
           command: {id: 'editor.drawio.insertDiagram', title: '插入 Draw.io 图表', arguments: [model, range]},
-          label: "插入 Draw.io 图表",
+          label: "插入Draw.io(svg)",
           filterText: "@drawio diagram",
           range,
         },
