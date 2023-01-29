@@ -2,10 +2,9 @@ import mainFrame from "@sinm/onote-plugin/main";
 import Tunnel from "@sinm/onote-plugin/previewer/tunnel/Tunnel";
 import EditorExtension from "./EditorExtension";
 
-let drawioTunnel: Tunnel;
+let drawioTunnel: Tunnel | undefined;
 
 mainFrame.onNewTunnel((tunnel) => {
-  console.log("active", tunnel.groupId);
   if (tunnel.groupId !== "drawio") {
     return;
   }
@@ -21,6 +20,7 @@ mainFrame.onNewTunnel((tunnel) => {
   });
 
   tunnel.handle("drawio.saveFile", async ({ uri, content }) => {
+    console.log('save======', uri, content)
     if (uri) {
       const blob: Blob = await fetch(content).then((res) => res.blob());
       const buf = await blob.arrayBuffer();
@@ -30,14 +30,14 @@ mainFrame.onNewTunnel((tunnel) => {
 });
 
 mainFrame.onTabActivated(({ uri }) => {
-  if (drawioTunnel) {
-    drawioTunnel.send("drawio.tabopened", { uri });
+  if (!drawioTunnel?.disposed) {
+    drawioTunnel?.send("drawio.tabopened", { uri });
   }
 });
 
 mainFrame.registerFilePanel({
   editable: false,
-  extensions: [".dio.svg", ".drawio.svg"],
+  extensions: [".drawio.svg"],
   previewer:
     mainFrame.getPluginRootUri("@sinm/onote-plugin-drawio") + "/drawio.html",
 });

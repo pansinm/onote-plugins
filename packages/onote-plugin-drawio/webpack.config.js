@@ -6,6 +6,7 @@ module.exports = {
     drawio: "./src/drawio/index.ts",
   },
   mode: "production",
+  devtool: 'source-map',
   module: {
     rules: [
       {

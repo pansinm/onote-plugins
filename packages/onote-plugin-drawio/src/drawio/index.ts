@@ -1,19 +1,11 @@
-import { TunnelFactory } from "@sinm/onote-plugin/previewer";
+import tunnel from "./tunnel";
 
 const iframe = document.createElement("iframe");
-
-iframe.src =
-  "https://embed.diagrams.net/?embed=1&ui=atlas&spin=1&autosave=1&modified=unsavedChanges&proto=json";
-  
-document.body.append(iframe)
 
 function isSupport(uri: string) {
   return /\.(dio|drawio).svg$/.test(uri);
 }
 
-const tunnel = TunnelFactory.createTunnelToMainFrame('drawio');
-
-console.log(tunnel);
 let currentUri: string;
 async function load(uri: string) {
   if (!isSupport(uri)) {
@@ -21,19 +13,18 @@ async function load(uri: string) {
   }
   let drawIoWindow = iframe?.contentWindow;
   currentUri = uri;
-  const content = await tunnel.call("drawio.readFile", { uri }).catch(() => '');
+  const content = await tunnel.call("drawio.readFile", { uri }).catch(() => "");
   drawIoWindow?.postMessage(
     JSON.stringify({
       action: "load",
       autosave: 1,
       xml: content,
-      title: decodeURIComponent(uri.split('/').pop() || 'drawio'),
-      name: decodeURIComponent(uri.split('/').pop() || 'drawio')
+      title: decodeURIComponent(uri.split("/").pop() || "drawio"),
+      name: decodeURIComponent(uri.split("/").pop() || "drawio"),
     }),
     "*"
   );
 }
-
 
 tunnel.on("drawio.tabopened", async ({ uri }) => {
   load(uri);
@@ -41,7 +32,7 @@ tunnel.on("drawio.tabopened", async ({ uri }) => {
 
 window.addEventListener("message", async (evt) => {
   let drawIoWindow = iframe?.contentWindow;
-  console.log(evt)
+  console.log(evt);
   if (evt.source !== drawIoWindow || !drawIoWindow) {
     return;
   }
@@ -52,7 +43,7 @@ window.addEventListener("message", async (evt) => {
     load(currentUri as string);
     return;
   }
-  if (msg.event === "save" || msg.event === 'autosave') {
+  if (msg.event === "save" || msg.event === "autosave") {
     drawIoWindow.postMessage(
       JSON.stringify({ action: "export", format: "xmlsvg", spinKey: "saving" }),
       "*"
@@ -66,3 +57,8 @@ window.addEventListener("message", async (evt) => {
     });
   }
 });
+
+iframe.src =
+  "https://embed.diagrams.net/?embed=1&ui=atlas&spin=1&autosave=1&modified=unsavedChanges&proto=json";
+
+document.body.append(iframe);

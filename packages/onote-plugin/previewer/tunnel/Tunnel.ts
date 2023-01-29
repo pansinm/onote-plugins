@@ -72,11 +72,9 @@ class Tunnel {
     this.ready = true;
     port.addEventListener('message', (ev) => {
       const { channel, payload, meta } = ev.data;
-      console.log('receive', channel, payload, meta);
       this.emitter.emit(channel, payload, meta);
     });
     port.addEventListener('close', () => {
-      console.log('port close');
       this.dispose();
     });
     port.start();
@@ -98,11 +96,15 @@ class Tunnel {
   }
   on(channel: string, handler: (payload: any, meta: Meta) => void) {
     this.emitter.on(channel, handler);
+    return {
+      dispose: () => {
+        this.emitter.off(channel, handler);
+      },
+    };
   }
 
   send(channel: string, payload: any, meta: Meta = {}) {
     const id = uuid('tunnel-msg');
-    console.log('send message', channel, payload);
     this.port?.postMessage({
       channel,
       payload,
@@ -153,7 +155,7 @@ class Tunnel {
     };
   }
 
-  async call(channel: string, payload: any = undefined): Promise<any> {
+  async call(channel: string, payload: any = undefined) {
     return new Promise((resolve, reject) => {
       const messageId = this.send(channel, payload, {
         type: 'request',
