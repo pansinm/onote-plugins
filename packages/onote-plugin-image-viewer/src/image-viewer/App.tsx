@@ -5,7 +5,7 @@ import { getCurrentUri } from "./ipc";
 import tunnel from "./tunnel";
 
 function isSupport(uri: string) {
-  return /\.(png|svg|jpe?g)$/.test(uri);
+  return /\.(png|svg|jpe?g|gif)$/i.test(uri);
 }
 
 
@@ -33,7 +33,7 @@ function App() {
   }, []);
 
   return (
-    <img src={img}></img>
+    <img src={img.replace(/^file:/, 'onote:')}></img>
   );
 }
 

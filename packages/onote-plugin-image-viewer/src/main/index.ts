@@ -24,6 +24,6 @@ mainFrame.registerFilePanel({
   editable: false,
   extensions: [".png", ".jpg", ".jpeg", '.svg'],
   previewer:
-    mainFrame.getPluginRootUri("@sinm/onote-plugin-excalidraw") +
+    mainFrame.getPluginRootUri("@sinm/onote-plugin-image-viewer") +
     "/image-viewer.html",
 });

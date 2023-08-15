@@ -21,11 +21,11 @@
     "@sinm/onote-plugin-image-viewer": {
       "name": "@sinm/onote-plugin-image-viewer",
       "author": "pansinm <pansinm@foxmail.com>",
-      "version": "0.4.1",
-      "title": "Excalidraw Plugin",
-      "description": "Excalidraw Plugin for ONote",
+      "version": "0.2.1",
+      "title": "Image Viewer",
+      "description": "Image Viewer Plugin for ONote",
       "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-image-viewer",
-      "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-image-viewer/-/onote-plugin-image-viewer-0.1.0.tgz"
+      "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-image-viewer/-/onote-plugin-image-viewer-0.2.1.tgz"
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@sinm/onote-plugin-image-viewer",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "main": "dist/main.js",
   "author": "pansinm <pansinm@foxmail.com>",
   "title": "Image viewer Plugin",
@@ -8,7 +8,8 @@
   "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-image-viewer",
   "license": "MIT",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
