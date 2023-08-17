@@ -1,6 +1,6 @@
 {
   "name": "@sinm/onote-plugin-image-viewer",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "main": "dist/main.js",
   "author": "pansinm <pansinm@foxmail.com>",
   "title": "Image viewer Plugin",

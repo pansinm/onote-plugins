@@ -74,10 +74,27 @@ function OImageEditor(props: OImageEditorProps) {
       const dataURL = editor.toDataURL({});
       writeFile(uri, dataURL);
     };
+
+    document.addEventListener(
+      "keydown",
+      function (e) {
+        if (
+          (window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey) &&
+          e.key === "s"
+        ) {
+          e.preventDefault();
+          saveFile();
+        }
+      },
+      false
+    );
+
     editor.on("objectAdded", saveFile);
     editor.on("objectMoved", saveFile);
     editor.on("objectRotated", saveFile);
     editor.on("objectScaled", saveFile);
+    editor.on("undoStackChanged", saveFile);
+    editor.on("redoStackChanged", saveFile);
     ref.current = editor;
   }, []);
 

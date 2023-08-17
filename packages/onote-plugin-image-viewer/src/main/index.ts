@@ -18,9 +18,10 @@ mainFrame.onNewTunnel((tunnel) => {
   tunnel.handle("imageviewer.getCurrent", async () => {
     return mainFrame.getActiveTab()?.uri;
   });
-  
+
   tunnel.handle("imageviewer.saveFile", async ({ uri, content }) => {
     if (uri) {
+      console.log('imageviewer.saveFile', uri, content);
       const blob: Blob = await fetch(content).then((res) => res.blob());
       const buf = await blob.arrayBuffer();
       return mainFrame.writeFile(uri, new Int8Array(buf) as any);
