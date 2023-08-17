@@ -1,31 +1,31 @@
 {
-  "plugins": {
-    "@sinm/onote-plugin-drawio": {
+  "plugins": [
+    {
       "name": "@sinm/onote-plugin-drawio",
       "author": "pansinm <pansinm@foxmail.com>",
       "version": "0.4.2",
-      "title": "Drawio Plugin",
-      "description": "Drawio Plugin for ONote",
+      "title": "Draw.io Plugin",
+      "description": "Draw.io plugin for ONote",
       "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-drawio",
       "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-drawio/-/onote-plugin-drawio-0.4.2.tgz"
     },
-    "@sinm/onote-plugin-excalidraw": {
+    {
       "name": "@sinm/onote-plugin-excalidraw",
       "author": "pansinm <pansinm@foxmail.com>",
       "version": "0.4.1",
-      "title": "Excalidraw Plugin",
-      "description": "Excalidraw Plugin for ONote",
+      "title": "Draw.io Plugin",
+      "description": "Draw.io plugin for ONote",
       "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-excalidraw",
       "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-excalidraw/-/onote-plugin-excalidraw-0.4.1.tgz"
     },
-    "@sinm/onote-plugin-image-viewer": {
+    {
       "name": "@sinm/onote-plugin-image-viewer",
       "author": "pansinm <pansinm@foxmail.com>",
-      "version": "0.2.1",
-      "title": "Image Viewer",
-      "description": "Image Viewer Plugin for ONote",
+      "version": "0.3.1",
+      "title": "Image viewer Plugin",
+      "description": "Image viewer plugin for ONote",
       "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-image-viewer",
-      "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-image-viewer/-/onote-plugin-image-viewer-0.2.1.tgz"
+      "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-image-viewer/-/onote-plugin-image-viewer-0.3.1.tgz"
     }
-  }
+  ]
 }
