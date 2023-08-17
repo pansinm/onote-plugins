@@ -31,7 +31,7 @@ mainFrame.onNewTunnel((tunnel) => {
 
 mainFrame.registerFilePanel({
   editable: false,
-  extensions: [".png", ".jpg", ".jpeg", '.svg'],
+  extensions: [".png", ".jpg", ".jpeg", '.svg', '.gif'],
   previewer:
     mainFrame.getPluginRootUri("@sinm/onote-plugin-image-viewer") +
     "/image-viewer.html",
