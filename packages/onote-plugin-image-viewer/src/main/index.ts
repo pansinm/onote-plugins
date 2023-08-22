@@ -21,7 +21,7 @@ mainFrame.onNewTunnel((tunnel) => {
 
   tunnel.handle("imageviewer.saveFile", async ({ uri, content }) => {
     if (uri) {
-      console.log('imageviewer.saveFile', uri, content);
+      console.log("imageviewer.saveFile", uri, content);
       const blob: Blob = await fetch(content).then((res) => res.blob());
       const buf = await blob.arrayBuffer();
       return mainFrame.writeFile(uri, new Int8Array(buf) as any);
@@ -31,7 +31,7 @@ mainFrame.onNewTunnel((tunnel) => {
 
 mainFrame.registerFilePanel({
   editable: false,
-  extensions: [".png", ".jpg", ".jpeg", '.svg', '.gif'],
+  extensions: [".png", ".jpg", ".jpeg", ".svg", ".gif"],
   previewer:
     mainFrame.getPluginRootUri("@sinm/onote-plugin-image-viewer") +
     "/image-viewer.html",

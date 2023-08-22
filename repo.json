@@ -21,11 +21,11 @@
     {
       "name": "@sinm/onote-plugin-image-viewer",
       "author": "pansinm <pansinm@foxmail.com>",
-      "version": "0.3.3",
+      "version": "0.4.0",
       "title": "Image viewer Plugin",
       "description": "Image viewer plugin for ONote",
       "homepage": "https://github.com/pansinm/onote-plugins/packages/onote-plugin-image-viewer",
-      "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-image-viewer/-/onote-plugin-image-viewer-0.3.3.tgz"
+      "downloadUrl": "https://registry.npmmirror.com/@sinm/onote-plugin-image-viewer/-/onote-plugin-image-viewer-0.4.0.tgz"
     }
   ]
 }

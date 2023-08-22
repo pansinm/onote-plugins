@@ -1,6 +1,6 @@
 {
   "name": "@sinm/onote-plugin-image-viewer",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "main": "dist/main.js",
   "author": "pansinm <pansinm@foxmail.com>",
   "title": "Image viewer Plugin",
@@ -23,8 +23,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "style-loader": "^3.3.3",
+    "styled-components": "^6.0.7",
     "ts-loader": "^9.4.1",
-    "tui-image-editor": "^3.15.3",
     "typescript": "^4.9.3",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0"
@@ -38,6 +38,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@toast-ui/react-image-editor": "^3.15.2"
+    "react-filerobot-image-editor": "^4.5.1",
+    "react-konva": "^18.2.10"
   }
 }
